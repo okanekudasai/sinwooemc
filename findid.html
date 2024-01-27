@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>아이디찾기</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            height: 100%;
+        }
+        a {
+            text-decoration: none;
+        }
+        @media screen and (min-height: 450px)  {
+            body{
+                display: flex;
+                align-items: center;
+            }
+        }
+        .container {
+            border: 1px solid #aaaaaa;
+            height: 450px;
+            width: 400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+        .loginBox {
+            height: 350px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .idInput, .passwordInput {
+            width: 95%;
+            height: 25px;
+            display: block;
+            margin: 0 auto;
+            border: none;
+            border-bottom: 1px solid;
+            font-size: 16px;
+        }
+        .idInput:focus, .passwordInput:focus {
+            outline: none;
+            border-bottom: 3px solid;
+        }
+        .loginBtn {
+            display: block;
+            height: 50px;
+            width: 90%;
+            margin: 0 auto;
+            background-color: #333333;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+        }
+        .joinBox {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loginBox">
+            <div class="loginText" style="color: #333333; font-size: 40px;">아이디찾기</div>
+            <div style="height: 40px"></div>
+                
+            <div style="height: 40px; display: flex; align-items: center;">
+                <input id="inputedEmail" class="passwordInput" type="text" placeholder="가입시 입력한 이메일을 적어주세요" onkeyup="if(window.event.keyCode==13){putFindBtn();}">
+            </div>
+            <div style="height: 40px"></div>
+            <input type="button" class="loginBtn" value="아이디 찾기" onclick="putFindBtn();">
+            
+            <div style="height: 40px"></div>
+            <div class="joinBox"><a href="findPassword.html">비밀번호 찾기</a> | <a href="loginPage.html">로그인</a> | <a href="joinPage.html">회원가입</a></div>
+            <div style="height: 10px"></div>
+            <div class="joinBox"><a href="/">홈으로</a></div>
+        </div>
+    </div>
+
+    <!--파이어 베이스sdk를 설치합니다.-->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+        //파이어 베이스를 초기화합니다.
+        var firebaseConfig = {
+            apiKey: "AIzaSyART60VkbZ5b50p90WjaA5F3JqlK9v_usI",
+            authDomain: "sinwooemc-ee4be.firebaseapp.com",
+            projectId: "sinwooemc-ee4be",
+            storageBucket: "sinwooemc-ee4be.appspot.com",
+            messagingSenderId: "181362792114",
+            appId: "1:181362792114:web:715337957487e126a95bab",
+            measurementId: "G-EC0RF5080H"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+
+        //html요소를 내부변수로 선언합니다.
+        var inputedEmail;
+
+        function putFindBtn() {
+            console.log("아이디찾기 버튼이 눌렸습니다.");
+            inputedEmail = document.getElementById("inputedEmail").value;
+            if(inputedEmail == "") {
+                alert("이메일을 입력하세요");
+            } else {
+                var isEmail = false;
+                db.collection("member").where("email", "==", inputedEmail).get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        alert("아이디는 '" + doc.id + "'입니다.");
+                        isEmail = true;
+                    });
+                    if(isEmail == false) {
+                        alert("이메일이 존재하지 않습니다.")
+                    }
+                }).catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+

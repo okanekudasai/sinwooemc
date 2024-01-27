@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>오시는 길</title>
+    <link href="main.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        $(window).scroll(function() {
+            $('.navBar').css({left: 0 - $(this).scrollLeft()});
+        });
+        $(window).scroll(function() {
+            $('.loginBar').css({left: 0 - $(this).scrollLeft()});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="loginBar">
+        <div class="loginInnerBar">
+            <div id="loginBarLoginHref" style="display:none;"><a href="loginPage.html">로그인</a></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarJoinHref" style="display:none;"><a href="joinPage.html">회원가입</a></div>
+            <style>
+                #loginBarDisplayId {
+                    cursor: pointer;
+                }
+            </style>
+            <div id="loginBarDisplayId" style="display:none;" onclick="toMyPage()"></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarLogout" onclick="putLogoutText()" style="display:none;">로그아웃</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="navBar">
+            <div class="navInnerBar">
+                <img src="trimed.png" style="height: 40px; cursor: pointer;" onclick="location.href='/'">
+                <div style="width: 70px;"></div>
+                <div class="navMenu">
+                    <div>
+                        <div class="menuBtn mb1"><a href="company.html">회사소개</a></div>
+                        <div class="menuUnder mu1"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb2"><a href="product.html">제품소개</a></div>
+                        <div class="menuUnder mu2"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb3"><a href="price.html">가격표</a></div>
+                        <div class="menuUnder mu3"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb4"><a href="counsel.html">상담문의</a></div>
+                        <div class="menuUnder mu4"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb5"><a href="catalog.html">카탈로그</a></div>
+                        <div class="menuUnder mu5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainImg">
+            <div><img style="height: 200px" src="sub_back_intro_l.jpg"></div>
+            <div><img style="height: 200px" src="sub_intro.jpg"></div>
+            <div><img style="height: 200px" src="sub_back_intro_r.jpg"></div>
+        </div>
+
+        <div style="height: 60px;"></div>
+
+
+        <div style="font-size: 40px; text-align: center; font-weight: bold;">오시는 길</div>
+        <div
+            style="width: 1200px; margin: 10px auto; color: #555555; font-size: 20px; font-weight: bold; text-align: center;">
+            대구광역시 북구 노원로 283 (침산동)<br>대구광역시 북구 침산1동 685-4</div>
+        <div style="height: 50px;"></div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div><img src="phone.png" style="height: 40px;" /></div>
+            <div style="margin: 10px; font-size: 30px;  color: #444444">053-358-6940~1</div>
+            <div style="width: 30px;"></div>
+            <div><img src="fax.png" style="height: 40px;" /></div>
+            <div style="margin: 10px; font-size: 30px;  color: #444444">053-351-5411</div>
+            <div style="width: 30px;"></div>
+            <div><img src="homepage.png" style="height: 40px;" /></div>
+            <div style="margin: 10px; font-size: 30px;  color: #444444">http://www.sinwooemc.kro.kr</div>
+        </div>
+
+        <div style="height: 20px;"></div>
+
+        <div id="map" style="width:1000px;height:350px; margin: 0 auto;"></div>
+        <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef155a24827dc5999d5470bef979311d"></script>
+        <script>
+            var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+            var options = { //지도를 생성할 때 필요한 기본 옵션
+                center: new kakao.maps.LatLng(35.900874060309356, 128.59072808813147), //지도의 중심좌표.
+                level: 1 //지도의 레벨(확대, 축소 정도)
+            };
+
+            var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+            // 마커가 표시될 위치입니다 
+            var markerPosition = new kakao.maps.LatLng(35.900874060309356, 128.59072808813147);
+
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
+        </script>
+
+
+        <div style="height: 80px;"></div>
+
+        <div class="footerDiv">
+            <div class="footerInnerDiv">
+                <div><a href="/"><img src="fullLogoGray.png" style="height: 60px;" /></a></div>
+                <div style="width: 30px;"></div>
+                <div style="font-size: 14px; color: #CDCDCD">
+                    <div style="margin: 0 0 8px 0"><a style="color: #CDCDCD" href="way.html">찾아오시는 길</a>  |  <a style="color: #CDCDCD" href="company.html">회사소개</a></div>
+                    <div>대구광역시 북구 노원로 283 | 신우기전 | 대표자:이원태 | 사업자등록번호:504-20-87206</div>
+                    <div>TEL:053-358-6940~1 | FAX:053-351-5411</div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    
+    <!--파이어 베이스sdk를 설치합니다.-->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+        //파이어 베이스를 초기화합니다.
+        var firebaseConfig = {
+            apiKey: "AIzaSyART60VkbZ5b50p90WjaA5F3JqlK9v_usI",
+            authDomain: "sinwooemc-ee4be.firebaseapp.com",
+            projectId: "sinwooemc-ee4be",
+            storageBucket: "sinwooemc-ee4be.appspot.com",
+            messagingSenderId: "181362792114",
+            appId: "1:181362792114:web:715337957487e126a95bab",
+            measurementId: "G-EC0RF5080H"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+
+        //html요소를 변수로 선언합니다.
+        var loginBarLoginHref = document.getElementById("loginBarLoginHref");
+        var loginBarJoinHref = document.getElementById("loginBarJoinHref");
+        var loginBarDisplayId = document.getElementById("loginBarDisplayId");
+        var loginBarLogout = document.getElementById("loginBarLogout");
+
+        //사용자가 로그인 되어있는지 확인합니다.
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) { //로그인되어있다면
+                //일단 제일위에 로그인이랑 회원가입 글자 지움
+                loginBarLoginHref.setAttribute("style", "display: none;");
+                loginBarJoinHref.setAttribute("style", "display: none;");
+                loginBarDisplayId.setAttribute("style", "display: block;");
+                loginBarLogout.setAttribute("style", "display: block; cursor: pointer;");
+                //var uid = user.uid;
+                currentId = user.displayName;
+                loginBarDisplayId.innerText = currentId;
+            } else { //로그인되어있지 않다면
+                console.log("로그인 되어있지 않습니다.");
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+            }
+        });
+
+        function putLogoutText() {
+            console.log("로그아웃 눌림");
+            firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+                console.log("로그아웃 성공");
+            }).catch((error) => {
+            // An error happened.
+                console.log("로그아웃 실패");
+            });
+        }
+        function toMyPage() {
+            location.href = "myPage.html"
+        }
+
+        
+    </script>
+</body>
+</html>

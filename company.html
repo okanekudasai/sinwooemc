@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>회사소개</title>
+    <link href="main.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        $(window).scroll(function() {
+            $('.navBar').css({left: 0 - $(this).scrollLeft()});
+        });
+        $(window).scroll(function() {
+            $('.loginBar').css({left: 0 - $(this).scrollLeft()});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="loginBar">
+        <div class="loginInnerBar">
+            <div id="loginBarLoginHref" style="display:none;"><a href="loginPage.html">로그인</a></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarJoinHref" style="display:none;"><a href="joinPage.html">회원가입</a></div>
+            <style>
+                #loginBarDisplayId {
+                    cursor: pointer;
+                }
+            </style>
+            <div id="loginBarDisplayId" style="display:none;" onclick="toMyPage()"></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarLogout" onclick="putLogoutText()" style="display:none;">로그아웃</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="navBar">
+            <div class="navInnerBar">
+                <img src="trimed.png" style="height: 40px; cursor: pointer;" onclick="location.href='/'">
+                <div style="width: 70px;"></div>
+                <div class="navMenu">
+                    <div>
+                        <div class="menuBtn mb1"><a href="company.html">회사소개</a></div>
+                        <div class="menuUnder mu1"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb2"><a href="product.html">제품소개</a></div>
+                        <div class="menuUnder mu2"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb3"><a href="price.html">가격표</a></div>
+                        <div class="menuUnder mu3"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb4"><a href="counsel.html">상담문의</a></div>
+                        <div class="menuUnder mu4"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb5"><a href="catalog.html">카탈로그</a></div>
+                        <div class="menuUnder mu5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainImg">
+            <div><img style="height: 200px" src="sub_back_intro_l.jpg"></div>
+            <div><img style="height: 200px" src="sub_intro.jpg"></div>
+            <div><img style="height: 200px" src="sub_back_intro_r.jpg"></div>
+        </div>
+
+        <div style="height: 60px;"></div>
+
+
+        <div style="font-size: 40px; text-align: center; font-weight: bold;">회사소개</div>
+        <div style="width: 1280px; margin: 30px auto -390px;">
+            <img style="width:1280px;" src="companyScape.png" />
+            <div style="padding: 50px; position: relative; top: -400px; left: 60%; height: 350px; width: 30%; background-color: #002060; z-index: 50; margin: 0;">
+                <div style="color: white; font-size: 35px; font-weight: bold;">신우기전은</div>
+                <div style="color: white; font-size: 35px; font-weight: bold; margin: 0 0 15px 0">1995년 7월에 창립</div>
+                <div style="color: white; font-size: 25px; font-weight: bold;">하여 형광등기구보강대 및 경량 철골천장의 전기공사 소요자재와 이에 필요한 전동공구를 제작을 선도하는 대구의 대표 업체입니다.</div>
+            </div>
+        </div>
+        <div style="width: 1200px; margin: 10px auto; color: #555555; font-size: 20px; font-weight: bold;">경량철골 천장의 전기공사는 내선공사의 중요한 공정이므로 이를 시공하는데는 표준시공법과 분야별 노하우가필요함은 물론이나 설계,시공자에 따라 제각각 이루어 지므로 그때마다 시행착오로혼란해지는 점이 있어 외람되나마 저희 신우기전에서 이 공사의 공정에 표준을제시하고 선도하는 업체로 자임코자 합니다.</div>
+        <div style="width: 1200px; margin: 10px auto; color: #555555; font-size: 20px; font-weight: bold;">또한 국제화 개방화에 대비하여 제품과 서비스의 일류화, 진실되고 성실한 운영, 고객의 사용 적합성 추구, 자체품질 보증철저 등을 방침으로 정하고 전사원이 합심하여 혼신의 노력을 다하고 있습니다.
+        </div>
+        <div style="width: 1200px; margin: 10px auto; color: #555555; font-size: 20px; font-weight: bold;">앞으로 끊임없는 품질경영으로 고객의 사랑을 잃지 않는 믿음직한 기업이 될것을 약속드립니다.
+        </div>
+        <div style="width: 1200px; margin: 10px auto; color: #555555; font-size: 20px; font-weight: bold;">저희 신우기전을 아껴주시는 고객 여러분께 진심으로 감사의 말씀을 드리며, 많은 지도 편달 부탁드립니다.
+        </div>
+        <div style="width: 1200px; margin: 10px auto; color: #555555; font-size: 20px; font-weight: bold;">감사합니다.</div>
+        <div style="width: 1200px; margin: 10px auto; color: #555555; font-size: 20px; font-weight: bold; text-align: right;">대표 이원태 드림</div>
+        
+        <div style="height: 20px"></div>
+
+        <style>
+            th{
+                padding: 10px;
+                background-color: #f3f6f7;
+                font-weight: normal;
+                border: 1px solid #cccccc;
+
+            }
+            td{
+                padding: 10px;                
+                border: 1px solid #cccccc;
+            }
+            table {
+                font-size: 20px;
+                
+                text-align: center;
+                width: 1000px;
+                margin: 0 auto; 
+                border: none;
+                border-top: 3px solid #2F5597;
+                border-collapse: collapse;
+            }
+            
+        </style>
+
+        <table>
+            <tr>
+                <th style="width: 300px;">주소</th><td>대구광역시 북구 노원로 283 (침산동)<br>대구광역시 북구 침산1동 685-4</td>
+            </tr>
+            <tr>
+                <th>대표전화</th><td>053-358-6940~1</td>
+            </tr>
+            <tr>
+                <th>FAX</th><td>053-351-5411</td>
+            </tr>
+            <tr>
+                <th>E-mail</th><td>sinwooemc@hanmail.net</td>
+            </tr>
+        </table>
+
+        <div style="height: 30px;"></div>
+        <div style="margin: 10px; color: #202020; font-size: 20px; font-weight: bold; text-align: center;">제품일람표</div>
+        <table>
+            <tr>
+                <th>제품명</th><th>형식</th><th>특허사항(실용신안)</th><th>비고</th>
+            </tr>
+            <tr>
+                <td rowspan="3">형광등기구보강대</td><td>행가스프링형</td><td>등록 제0254971호<br>등록 제0295260호</td><td rowspan="7"></td>
+            </tr>
+            <tr>
+                <td>장력스프링형</td><td>등록 제079788호<br>등록 제084283호</td>
+            </tr>
+            <tr>
+                <td>찬넬보강형</td><td>등록 제084284호</td>
+            </tr>
+            <tr>
+                <td rowspan="3">다운라이트보강대</td><td>행가스프링형</td><td>등록 제00295260호</td>
+            </tr>
+            <tr>
+                <td>장력스프링형</td><td>등록 제079788호</td>
+            </tr>
+            <tr>
+                <td>평행스프링형</td><td>등록 제0298145호</td>
+            </tr>
+            <tr>
+                <td>선풍기 보강대</td><td>찬넬보강형</td><td>등록 제0267911호</td>
+            </tr>
+        </table>
+
+        <div style="height: 30px;"></div>
+        <div style="margin: 10px; color: #202020; font-size: 20px; font-weight: bold; text-align: center;">인증 및 수상 내역</div>
+        <table style="width: 800px;">
+            <tr>
+                <td>ISO 9001:2000인증 (IRC 국제인증원)</td>
+            </tr>
+            <tr>
+                <td>중소기업청장 전기산업발전공로 표창 (2006년 10월 17일)</td>
+            </tr>
+            <tr>
+                <td>Q마크 획득 (한국전기전자시험연구원)</td>
+            </tr>
+            <tr>
+                <td>지식경제부 장관상 수상 (2009년 5월 20일)</td>
+            </tr>
+        </table>
+        
+        <div style="height: 80px;"></div>
+
+        <div class="footerDiv">
+            <div class="footerInnerDiv">
+                <div><a href="/"><img src="fullLogoGray.png" style="height: 60px;" /></a></div>
+                <div style="width: 30px;"></div>
+                <div style="font-size: 14px; color: #CDCDCD">
+                    <div style="margin: 0 0 8px 0"><a style="color: #CDCDCD" href="way.html">찾아오시는 길</a>  |  <a style="color: #CDCDCD" href="company.html">회사소개</a></div>
+                    <div>대구광역시 북구 노원로 283 | 신우기전 | 대표자:이원태 | 사업자등록번호:504-20-87206</div>
+                    <div>TEL:053-358-6940~1 | FAX:053-351-5411</div>
+                </div>
+            </div>    
+        </div>
+    </div>
+
+    <!--파이어 베이스sdk를 설치합니다.-->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+        //파이어 베이스를 초기화합니다.
+        var firebaseConfig = {
+            apiKey: "AIzaSyART60VkbZ5b50p90WjaA5F3JqlK9v_usI",
+            authDomain: "sinwooemc-ee4be.firebaseapp.com",
+            projectId: "sinwooemc-ee4be",
+            storageBucket: "sinwooemc-ee4be.appspot.com",
+            messagingSenderId: "181362792114",
+            appId: "1:181362792114:web:715337957487e126a95bab",
+            measurementId: "G-EC0RF5080H"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+
+        //html요소를 변수로 선언합니다.
+        var loginBarLoginHref = document.getElementById("loginBarLoginHref");
+        var loginBarJoinHref = document.getElementById("loginBarJoinHref");
+        var loginBarDisplayId = document.getElementById("loginBarDisplayId");
+        var loginBarLogout = document.getElementById("loginBarLogout");
+
+        //사용자가 로그인 되어있는지 확인합니다.
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) { //로그인되어있다면
+                //일단 제일위에 로그인이랑 회원가입 글자 지움
+                loginBarLoginHref.setAttribute("style", "display: none;");
+                loginBarJoinHref.setAttribute("style", "display: none;");
+                loginBarDisplayId.setAttribute("style", "display: block;");
+                loginBarLogout.setAttribute("style", "display: block; cursor: pointer;");
+                //var uid = user.uid;
+                currentId = user.displayName;
+                loginBarDisplayId.innerText = currentId;
+            } else { //로그인되어있지 않다면
+                console.log("로그인 되어있지 않습니다.");
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+            }
+        });
+
+        function putLogoutText() {
+            console.log("로그아웃 눌림");
+            firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+                console.log("로그아웃 성공");
+            }).catch((error) => {
+            // An error happened.
+                console.log("로그아웃 실패");
+            });
+        }
+        function toMyPage() {
+            location.href = "myPage.html"
+        }
+    </script>
+</body>
+</html>

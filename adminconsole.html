@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 콘솔</title>
+    <link href="main.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        $(window).scroll(function() {
+            $('.navBar').css({left: 0 - $(this).scrollLeft()});
+        });
+        $(window).scroll(function() {
+            $('.loginBar').css({left: 0 - $(this).scrollLeft()});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="loginBar">
+        <div class="loginInnerBar">
+            <div id="loginBarLoginHref" style="display:none;"><a href="loginPage.html">로그인</a></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarJoinHref" style="display:none;"><a href="joinPage.html">회원가입</a></div>
+            <style>
+                #loginBarDisplayId {
+                    cursor: pointer;
+                }
+            </style>
+            <div id="loginBarDisplayId" style="display:none;" onclick="toMyPage()"></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarLogout" onclick="putLogoutText()" style="display:none;">로그아웃</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="navBar">
+            <div class="navInnerBar">
+                <img src="trimed.png" style="height: 40px; cursor: pointer;" onclick="location.href='/'">
+                <div style="width: 70px;"></div>
+                <div class="navMenu">
+                    <div>
+                        <div class="menuBtn mb1"><a href="company.html">회사소개</a></div>
+                        <div class="menuUnder mu1"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb2"><a href="product.html">제품소개</a></div>
+                        <div class="menuUnder mu2"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb3"><a href="price.html">가격표</a></div>
+                        <div class="menuUnder mu3"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb4"><a href="counsel.html">상담문의</a></div>
+                        <div class="menuUnder mu4"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb5"><a href="catalog.html">카탈로그</a></div>
+                        <div class="menuUnder mu5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainImg">
+            <div><img style="height: 200px" src="sub_back_intro_l.jpg"></div>
+            <div><img style="height: 200px" src="sub_intro.jpg"></div>
+            <div><img style="height: 200px" src="sub_back_intro_r.jpg"></div>
+        </div>
+
+        <div style="height: 60px;"></div>
+
+
+        <div style="font-size: 40px; text-align: center; font-weight: bold;">관리자 콘솔</div>
+        
+        <div style="height: 30px;"></div>
+
+        <style>
+            th {
+                padding: 5px;
+                background-color: #f3f6f7;
+                font-weight: normal;
+
+            }
+
+            td {
+                padding: 5px;
+                border-top: 1px solid #cccccc;
+                /*border: solid;*/
+            }
+
+            table {
+                font-size: 15px;
+
+                text-align: center;
+                width: 1100px;
+                margin: 0 auto;
+                border: none;
+                border-top: 3px solid #2F5597;
+                border-bottom: 3px solid #cccccc;
+                border-collapse: collapse;
+            }
+
+            .questionTitle {
+                text-align: left;
+            }
+        </style>
+        <table id="consoleContent">
+            <tr>
+                <th>번호</th><th>아이디</th><th>e-mail</th><th>회사명</th><th>연락처</th><th>문의목록</th><th>탈퇴</th>
+            </tr>
+        </table>
+
+        <div style="height: 80px;"></div>
+
+        <div class="footerDiv">
+            <div class="footerInnerDiv">
+                <div><a href="/"><img src="fullLogoGray.png" style="height: 60px;" /></a></div>
+                <div style="width: 30px;"></div>
+                <div style="font-size: 14px; color: #CDCDCD">
+                    <div style="margin: 0 0 8px 0"><a style="color: #CDCDCD" href="way.html">찾아오시는 길</a>  |  <a style="color: #CDCDCD" href="company.html">회사소개</a></div>
+                    <div>대구광역시 북구 노원로 283 | 신우기전 | 대표자:이원태 | 사업자등록번호:504-20-87206</div>
+                    <div>TEL:053-358-6940~1 | FAX:053-351-5411</div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    
+    <!--파이어 베이스sdk를 설치합니다.-->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+        //파이어 베이스를 초기화합니다.
+        var firebaseConfig = {
+            apiKey: "AIzaSyART60VkbZ5b50p90WjaA5F3JqlK9v_usI",
+            authDomain: "sinwooemc-ee4be.firebaseapp.com",
+            projectId: "sinwooemc-ee4be",
+            storageBucket: "sinwooemc-ee4be.appspot.com",
+            messagingSenderId: "181362792114",
+            appId: "1:181362792114:web:715337957487e126a95bab",
+            measurementId: "G-EC0RF5080H"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+
+        //html요소를 변수로 선언합니다.
+        var loginBarLoginHref = document.getElementById("loginBarLoginHref");
+        var loginBarJoinHref = document.getElementById("loginBarJoinHref");
+        var loginBarDisplayId = document.getElementById("loginBarDisplayId");
+        var loginBarLogout = document.getElementById("loginBarLogout");
+        
+        var memberCount = 0;
+
+        //사용자가 로그인 되어있는지 확인합니다.
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) { //로그인되어있다면
+                //일단 제일위에 로그인이랑 회원가입 글자 지움
+                loginBarLoginHref.setAttribute("style", "display: none;");
+                loginBarJoinHref.setAttribute("style", "display: none;");
+                loginBarDisplayId.setAttribute("style", "display: block;");
+                loginBarLogout.setAttribute("style", "display: block; cursor: pointer;");
+                //var uid = user.uid;
+                currentId = user.displayName;
+                loginBarDisplayId.innerText = currentId;
+                db.collection("member").doc(currentId).get().then((doc) => {
+                    if(doc.data().authority == true) {
+                        console.log("어서오세요 관리자님");
+                        //consoleInit();
+                    }else {
+                        alert("관리자 권한이 있는 아이디로 로그인 후 이용하세요");
+                        location.href = "/";
+                    }
+                })
+            } else { //로그인되어있지 않다면
+                console.log("로그인 되어있지 않습니다.");
+                alert("관리자 권한이 있는 아이디로 로그인 후 이용하세요");
+                location.href = "/"
+            }
+        })
+        //function consoleInit() {
+            db.collection("member").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    var memberTableRow = document.createElement("tr");
+                    var memberNum = document.createElement("td");
+                    var memberId = document.createElement("td");
+                    var memberEmail = document.createElement("td");
+                    var memberCompany = document.createElement("td");
+                    var memberContact = document.createElement("td");
+                    var memberCounselList = document.createElement("td");
+                    var memberWithdrawal = document.createElement("td");
+
+                    memberCount++;
+                    memberNum.innerText = memberCount;
+                    memberId.innerText = doc.id;
+                    memberEmail.innerText = doc.data().email;
+                    memberCompany.innerText = doc.data().companyName;
+                    memberContact.innerText = doc.data().contact;
+                    memberCounselList.innerHTML = "<input type='button' value='문의 목록' onclick='putConfirmCounselBtn("+doc.id+")' />"
+                    memberWithdrawal.innerHTML = "<input type='button' value='탈퇴' onclick='putMemberWithdrwalBtn("+doc.id+")' />"
+
+                    var consoleContent = document.getElementById("consoleContent");
+                    
+                    memberTableRow.appendChild(memberNum);
+                    memberTableRow.appendChild(memberId);
+                    memberTableRow.appendChild(memberEmail);
+                    memberTableRow.appendChild(memberCompany);
+                    memberTableRow.appendChild(memberContact);
+                    memberTableRow.appendChild(memberCounselList);
+                    memberTableRow.appendChild(memberWithdrawal);
+
+                    consoleContent.appendChild(memberTableRow);
+                })
+            })
+        //};
+
+        function putLogoutText() {
+            console.log("로그아웃 눌림");
+            firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+                console.log("로그아웃 성공");
+                location.href = "/"
+            }).catch((error) => {
+            // An error happened.
+                console.log("로그아웃 실패");
+            });
+        }
+
+        function toMyPage() {
+            location.href = "myPage.html"
+        }
+
+        function putConfirmCounselBtn() {
+            console.log("문의 글을 확인 합니다.");
+        }
+
+        function putMemberWithdrwalBtn(withdrawalId) {
+            console.log("회원을 탈퇴시킵니다." + withdrwalId);
+        }
+    </script>
+</body>
+</html>

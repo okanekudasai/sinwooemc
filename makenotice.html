@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>상담문의</title>
+    <link href="main.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        $(window).scroll(function() {
+            $('.navBar').css({left: 0 - $(this).scrollLeft()});
+        });
+        $(window).scroll(function() {
+            $('.loginBar').css({left: 0 - $(this).scrollLeft()});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="loginBar">
+        <div class="loginInnerBar">
+            <div id="loginBarLoginHref" style="display:none;"><a href="loginPage.html">로그인</a></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarJoinHref" style="display:none;"><a href="joinPage.html">회원가입</a></div>
+            <style>
+                #loginBarDisplayId {
+                    cursor: pointer;
+                }
+            </style>
+            <div id="loginBarDisplayId" style="display:none;" onclick="toMyPage()"></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarLogout" onclick="putLogoutText()" style="display:none;">로그아웃</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="navBar">
+            <div class="navInnerBar">
+                <img src="trimed.png" style="height: 40px; cursor: pointer;" onclick="location.href='/'">
+                <div style="width: 70px;"></div>
+                <div class="navMenu">
+                    <div>
+                        <div class="menuBtn mb1"><a href="company.html">회사소개</a></div>
+                        <div class="menuUnder mu1"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb2"><a href="product.html">제품소개</a></div>
+                        <div class="menuUnder mu2"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb3"><a href="price.html">가격표</a></div>
+                        <div class="menuUnder mu3"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb4"><a href="counsel.html">상담문의</a></div>
+                        <div class="menuUnder mu4"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb5"><a href="catalog.html">카탈로그</a></div>
+                        <div class="menuUnder mu5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainImg">
+            <div><img style="height: 200px" src="sub_back_intro_l.jpg"></div>
+            <div><img style="height: 200px" src="sub_intro.jpg"></div>
+            <div><img style="height: 200px" src="sub_back_intro_r.jpg"></div>
+        </div>
+
+        <div style="height: 60px;"></div>
+
+
+        <div style="font-size: 40px; text-align: center; font-weight: bold;">상담문의</div>
+        <div style="width: 1200px; margin: 5px auto; color: #555555; font-size: 20px; font-weight: bold; text-align: center;">궁금한 점을 남겨 주시면 빠른 시일 안에 답변해 드리겠습니다</div>
+
+        <hr style="width: 1200px; margin: 40px auto;">
+
+        <style>
+            table {
+                margin: 0 auto;
+                border-top: 3px solid #2F5597;
+                text-align: center;
+                width: 900px;
+                border-collapse: collapse;
+            }
+            th{
+                font-weight: normal;
+                background-color: #f3f6f7;
+            }
+            th, td {
+                border: 1px solid #cccccc;
+                padding: 10px;
+            }
+        </style>
+        <table>
+            <tr>
+                <th style="width: 150px;">구분</th>
+                <td>
+                    공지
+                </td>
+            </tr>
+            <tr>
+                <th>제목</th>
+                <style>
+                    #inputQuestionTitle {
+                        width: 650px;
+                        height: 23px;
+                        border: none;
+                        border-bottom: 1px solid #cccccc;
+                        font-size: 16px;
+                    }
+                    #inputQuestionTitle:focus {
+                        outline: none;
+                        border-bottom: 2px solid #555555;
+                    }
+                    #inputQuestionContent {
+                        font-size: 14px;
+                        margin: 10px auto;
+                        border:none;
+                    }
+                    #inputQuestionContent:focus {
+                        outline: none;
+                    }
+                </style>
+                <td>
+                    <div style="height: 25px;"><input type="text" id="inputQuestionTitle" placeholder="제목을 입력하세요"></div>
+                </td>
+            </tr>
+            <tr>
+                <th>내용</th><td><textarea id="inputQuestionContent" style="width: 650px; height: 500px;" placeholder="내용을 입력하세요"></textarea></td>
+            </tr>
+        </table>
+
+        <div style="height: 20px;"></div>
+
+        <style>
+            .questionBtn {
+                display: block;
+                margin: 0 auto;
+                height: 30px;
+                width: 100px;
+                background-color: #3b6bbe;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .questionBtn:hover {
+                background-color: #2955a0;
+            }
+        </style>
+        <input type="button" value="제출하기" class="questionBtn" onClick="putSubmitQuestionBtn()">
+
+        <div style="height: 80px;"></div>
+
+        <div class="footerDiv">
+            <div class="footerInnerDiv">
+                <div><a href="/"><img src="fullLogoGray.png" style="height: 60px;" /></a></div>
+                <div style="width: 30px;"></div>
+                <div style="font-size: 14px; color: #CDCDCD">
+                    <div style="margin: 0 0 8px 0"><a style="color: #CDCDCD" href="way.html">찾아오시는 길</a>  |  <a style="color: #CDCDCD" href="company.html">회사소개</a></div>
+                    <div>대구광역시 북구 노원로 283 | 신우기전 | 대표자:이원태 | 사업자등록번호:504-20-87206</div>
+                    <div>TEL:053-358-6940~1 | FAX:053-351-5411</div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    
+    <!--파이어 베이스sdk를 설치합니다.-->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+        //파이어 베이스를 초기화합니다.
+        var firebaseConfig = {
+            apiKey: "AIzaSyART60VkbZ5b50p90WjaA5F3JqlK9v_usI",
+            authDomain: "sinwooemc-ee4be.firebaseapp.com",
+            projectId: "sinwooemc-ee4be",
+            storageBucket: "sinwooemc-ee4be.appspot.com",
+            messagingSenderId: "181362792114",
+            appId: "1:181362792114:web:715337957487e126a95bab",
+            measurementId: "G-EC0RF5080H"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+
+        //html요소를 변수로 선언합니다.
+        var loginBarLoginHref = document.getElementById("loginBarLoginHref");
+        var loginBarJoinHref = document.getElementById("loginBarJoinHref");
+        var loginBarDisplayId = document.getElementById("loginBarDisplayId");
+        var loginBarLogout = document.getElementById("loginBarLogout");
+
+        //사용자가 로그인 되어있는지 확인합니다.
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) { //로그인되어있다면
+                //일단 제일위에 로그인이랑 회원가입 글자 지움
+                loginBarLoginHref.setAttribute("style", "display: none;");
+                loginBarJoinHref.setAttribute("style", "display: none;");
+                loginBarDisplayId.setAttribute("style", "display: block;");
+                loginBarLogout.setAttribute("style", "display: block; cursor: pointer;");
+                //var uid = user.uid;
+                currentId = user.displayName;
+                loginBarDisplayId.innerText = currentId;
+            } else { //로그인되어있지 않다면
+                console.log("로그인 되어있지 않습니다.");
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+            }
+        });
+
+        function putLogoutText() {
+            console.log("로그아웃 눌림");
+            firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+                console.log("로그아웃 성공");
+                location.href="/";
+            }).catch((error) => {
+            // An error happened.
+                console.log("로그아웃 실패");
+            });
+        }
+
+        function putSubmitQuestionBtn() {
+            console.log("문의버튼 눌림");
+            var inputQuestionTitle = document.getElementById("inputQuestionTitle").value;
+            var inputQuestionContent = document.getElementById("inputQuestionContent").value;
+
+            //파이어베이스에 입력합니다.
+            db.collection("notice").add({
+                content: inputQuestionContent,
+                timestamp: new Date(),
+                title: inputQuestionTitle,
+                isAnswered: false
+            }).then(() => {
+                location.href="/counsel.html";
+            });
+        }
+        function toMyPage() {
+            location.href = "myPage.html"
+        }
+    </script>
+</body>
+</html>

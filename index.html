@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>신우기전</title>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        $(window).scroll(function() {
+            $('.navBar').css({left: 0 - $(this).scrollLeft()});
+        });
+        $(window).scroll(function() {
+            $('.loginBar').css({left: 0 - $(this).scrollLeft()});
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+        }
+        @media screen and (max-width: 1280px) {
+            body {
+                width: 1280px;
+            }
+        }
+        a {
+            color: black; text-decoration: none;
+        }
+        /*
+        div {
+            border: dashed;
+        }
+        */  
+        .loginBar {
+            position: fixed;
+            width: 100%;
+            background-color: #F3F3F3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 30px;
+            z-index: 100;
+        }
+        .loginInnerBar {
+            display: flex;
+            justify-content: flex-end;
+            width: 1280px;
+            margin: 0 auto;
+            height: 100%;
+            background-color: #F3F3F3;
+            align-items: center;
+        }
+        .navBar {
+            position: fixed;
+            width: 100%;
+            top: 27px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100px;
+            background-color: white;
+            z-index: 99;
+            box-shadow: 0px 0px 5px;
+        }
+        .navInnerBar {
+            display: flex;
+            width: 1280px;
+            margin: 0 auto;
+            height: 100%;
+            background-color: white;
+            align-items: center;
+        }
+        .navMenu {
+            display: flex;
+            align-items: center;
+        }
+        .container {
+            position: relative;
+            top: 127px;
+        }
+        .mainImg {
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+        .mainContent {
+            width: 1280px;
+            
+            margin: 0 auto;
+            display: flex;
+        }
+        .smallContentDiv {
+            display: flex;
+            flex-direction: column;
+        }
+        .introduceDiv {
+            display: flex;
+        }
+        .menuBtn {
+            font-size: 20px;
+            font-weight: bold;
+            width: 180px;
+            text-align: center;
+            margin: 15px 5px 5px 5px;
+        }
+        .menuUnder {
+            height: 5px;
+            background-color:#5656e7;
+            width: 0;
+            margin: 0 auto;
+            transition: width 0.3s;
+        }
+        .mb1:hover ~ .mu1 {
+            width: 120px;
+        }
+        .mb2:hover ~ .mu2 {
+            width: 120px;
+        }
+        .mb3:hover ~ .mu3 {
+            width: 120px;
+        }
+        .mb4:hover ~ .mu4 {
+            width: 120px;
+        }
+        .mb5:hover ~ .mu5 {
+            width: 120px;
+        }
+        .footerDiv {
+            display: flex;
+            background-color: #595959;
+            height: 140px;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .footerInnerDiv {
+            width: 1280px;
+            height: 80px;
+            margin: 0 auto;
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="loginBar">
+        <div class="loginInnerBar">
+            <div id="loginBarLoginHref" style="display:none;"><a href="loginPage.html">로그인</a></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarJoinHref" style="display:none;"><a href="joinPage.html">회원가입</a></div>
+            <style>
+                #loginBarDisplayId {
+                    cursor: pointer;
+                }
+            </style>
+            <div id="loginBarDisplayId" style="display:none;" onclick="toMyPage()"></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarLogout" onclick="putLogoutText()" style="display:none;">로그아웃</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="navBar">
+            <div class="navInnerBar">
+                <img src="trimed.png" style="height: 40px; cursor: pointer;" onclick="location.href='/'">
+                <div style="width: 70px;"></div>
+                <div class="navMenu">
+                    <div>
+                        <div class="menuBtn mb1"><a href="company.html">회사소개</a></div>
+                        <div class="menuUnder mu1"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb2"><a href="product.html">제품소개</a></div>
+                        <div class="menuUnder mu2"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb3"><a href="price.html">가격표</a></div>
+                        <div class="menuUnder mu3"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb4"><a href="counsel.html">상담문의</a></div>
+                        <div class="menuUnder mu4"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb5"><a href="catalog.html">카탈로그</a></div>
+                        <div class="menuUnder mu5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainImg">
+            <div><img style="height: 400px" src="main_back_intro_l.jpg"></div>
+            <div><img style="height: 400px" src="tmp_main_intro.jpg"></div>
+            <div><img style="height: 400px" src="main_back_intro_r.jpg"></div>
+        </div>
+
+        <div style="height: 60px;"></div>
+
+        <style>
+            .moreBtn {
+                background-color: #202020; color: white; border: solid; border-width:1px; border-color: white; width: 80px; height: 35px; text-align: center; font-size: 20px; font-weight: bold; color:white; cursor: pointer;
+            }
+            .moreBtn:hover {
+                background-color: #666666;
+            }
+        </style>
+        <div class="mainContent">
+            <div class="productDiv" style="width: 620px; height: 610px; background-image: url('backProduct.png');">
+                <div style="padding: 50px;">
+                    <div style="color: white; font-size: 40px; font-weight:bold;">제품소개</div>
+                    <div style="color: #CCCCCC; font-size: 18px; font-weight:bold;">제품의 일류화와 고객 만족을 추구합니다</div>
+                    <div style="height: 20px"></div>
+                    <div class="moreBtn" onclick="location.href='product.html'">more</div>
+                </div>
+            </div>
+            <div style="width: 10px;"></div>
+            <div class="smallContentDiv">
+                <div class="counselDiv" style="width: 630px; height: 300px; background-image: url('backCounsel.jpg');">
+                    <div style="padding: 50px;">
+                        <div style="color: white; font-size: 40px; font-weight:bold;">고객지원상담</div>
+                        <div style="color: #eeeeee; font-size: 18px; font-weight:bold;">전국 어디의 문의도 빠른시일 안에 답해드립니다</div>
+                        <div style="height: 20px"></div>
+                        <div style="color: white; font-size: 40px; font-weight:bold;">053-358-6940~1</div>
+                        <div style="color: #eeeeee; font-size: 18px; font-weight:bold;">평일 08:30~18:00 토,일,공휴일 휴무</div>
+                        <div style="color: #eeeeee; font-size: 18px; font-weight:bold;">FAX:053-351-5411 / E-mail:sinwooemc@hanmail.net</div>
+                    </div>
+                </div>
+                <div style="height: 10px;"></div>
+                <div class="introduceDiv">
+                    <div class="companyDiv" style="width: 310px; height: 300px; background-image: url('backCompany.jpg');">
+                        <div style="padding: 50px;">
+                            <div style="color: white; font-size: 40px; font-weight:bold;">회사소개</div>
+                            <div style="color: #eeeeee; font-size: 18px; font-weight:bold;">오늘보다 더 나은 내일을 위해 노력합니다</div>
+                            <div style="height: 20px"></div>
+                            <div class="moreBtn" onclick="location.href='company.html'">more</div>
+                        </div>
+                    </div>
+                    <div style="width: 10px;"></div>
+                    <div class="wayDiv" style="width: 310px; height: 300px; background-image: url('backWay.jpg');">
+                        <div style="padding: 50px;">
+                            <div style="color: white; font-size: 40px; font-weight:bold;">오시는 길</div>
+                            <div style="color: #eeeeee; font-size: 18px; font-weight:bold;">대구광역시 북구 노원로 283(침산동)</div>
+                            <div style="height: 20px"></div>
+                            <div class="moreBtn" onclick="location.href='way.html'">more</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height: 70px;"></div>
+    
+        <div class="footerDiv">
+            <div class="footerInnerDiv">
+                <div><a href="/"><img src="fullLogoGray.png" style="height: 60px;" /></a></div>
+                <div style="width: 30px;"></div>
+                <div style="font-size: 14px; color: #CDCDCD">
+                    <div style="margin: 0 0 8px 0"><a style="color: #CDCDCD" href="way.html">찾아오시는 길</a>  |  <a style="color: #CDCDCD" href="company.html">회사소개</a></div>
+                    <div>대구광역시 북구 노원로 283 | 신우기전 | 대표자:이원태 | 사업자등록번호:504-20-87206</div>
+                    <div>TEL:053-358-6940~1 | FAX:053-351-5411</div>
+                </div>
+            </div>    
+        </div>
+    </div>
+
+    <!--파이어 베이스sdk를 설치합니다.-->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+        //파이어 베이스를 초기화합니다.
+        var firebaseConfig = {
+            apiKey: "AIzaSyART60VkbZ5b50p90WjaA5F3JqlK9v_usI",
+            authDomain: "sinwooemc-ee4be.firebaseapp.com",
+            projectId: "sinwooemc-ee4be",
+            storageBucket: "sinwooemc-ee4be.appspot.com",
+            messagingSenderId: "181362792114",
+            appId: "1:181362792114:web:715337957487e126a95bab",
+            measurementId: "G-EC0RF5080H"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+
+        //html요소를 변수로 선언합니다.
+        var loginBarLoginHref = document.getElementById("loginBarLoginHref");
+        var loginBarJoinHref = document.getElementById("loginBarJoinHref");
+        var loginBarDisplayId = document.getElementById("loginBarDisplayId");
+        var loginBarLogout = document.getElementById("loginBarLogout");
+
+        //사용자가 로그인 되어있는지 확인합니다.
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) { //로그인되어있다면
+                //일단 제일위에 로그인이랑 회원가입 글자 지움
+                loginBarLoginHref.setAttribute("style", "display: none;");
+                loginBarJoinHref.setAttribute("style", "display: none;");
+                loginBarDisplayId.setAttribute("style", "display: block;");
+                loginBarLogout.setAttribute("style", "display: block; cursor: pointer;");
+                //var uid = user.uid;
+                currentId = user.displayName;
+                loginBarDisplayId.innerText = currentId;
+            } else { //로그인되어있지 않다면
+                console.log("로그인 되어있지 않습니다.");
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+            }
+        });
+
+        function putLogoutText() {
+            console.log("로그아웃 눌림");
+            firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+                console.log("로그아웃 성공");
+            }).catch((error) => {
+            // An error happened.
+                console.log("로그아웃 실패");
+            });
+        }
+        function toMyPage() {
+            location.href = "myPage.html"
+        }
+    </script>
+
+</body>
+</html>

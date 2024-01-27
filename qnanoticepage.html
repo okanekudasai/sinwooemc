@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>상담문의</title>
+    <link href="main.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        $(window).scroll(function() {
+            $('.navBar').css({left: 0 - $(this).scrollLeft()});
+        });
+        $(window).scroll(function() {
+            $('.loginBar').css({left: 0 - $(this).scrollLeft()});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="loginBar">
+        <div class="loginInnerBar">
+            <div id="loginBarLoginHref" style="display:none;"><a href="loginPage.html">로그인</a></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarJoinHref" style="display:none;"><a href="joinPage.html">회원가입</a></div>
+            <style>
+                #loginBarDisplayId {
+                    cursor: pointer;
+                }
+            </style>
+            <div id="loginBarDisplayId" style="display:none;" onclick="toMyPage()"></div>
+            <div style="width: 20px"></div>
+            <div id="loginBarLogout" onclick="putLogoutText()" style="display:none;">로그아웃</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="navBar">
+            <div class="navInnerBar">
+                <img src="trimed.png" style="height: 40px; cursor: pointer;" onclick="location.href='/'">
+                <div style="width: 70px;"></div>
+                <div class="navMenu">
+                    <div>
+                        <div class="menuBtn mb1"><a href="company.html">회사소개</a></div>
+                        <div class="menuUnder mu1"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb2"><a href="product.html">제품소개</a></div>
+                        <div class="menuUnder mu2"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb3"><a href="price.html">가격표</a></div>
+                        <div class="menuUnder mu3"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb4"><a href="counsel.html">상담문의</a></div>
+                        <div class="menuUnder mu4"></div>
+                    </div>
+                    <div>
+                        <div class="menuBtn mb5"><a href="catalog.html">카탈로그</a></div>
+                        <div class="menuUnder mu5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainImg">
+            <div><img style="height: 200px" src="sub_back_intro_l.jpg"></div>
+            <div><img style="height: 200px" src="sub_intro.jpg"></div>
+            <div><img style="height: 200px" src="sub_back_intro_r.jpg"></div>
+        </div>
+
+        <div style="height: 60px;"></div>
+
+        <div style="font-size: 40px; text-align: center; font-weight: bold;">상담문의</div>
+
+        <div id="questionTable">
+            <div style="font-size: 25px; height: 35px; line-height: 35px; display: flex; align-items: center; width: 850px; margin: 5px auto;">
+                <img src="questionIcon.png" style="height: 30px">
+                문의
+            </div>
+            <style>
+                table {
+                    margin: 0 auto;
+                    border-top: 3px solid #2F5597;
+                    border-bottom: 1px solid #cccccc;
+                    text-align: center;
+                    width: 900px;
+                    border-collapse: collapse;
+                }
+                th{
+                    font-weight: normal;
+                    background-color: #f3f6f7;
+                }
+                th, td {
+                    border: 1px solid #cccccc;
+                    padding: 10px;
+                }
+            </style>
+            <table>
+                <tr>
+                    <th>제목</th><td id="tableTitle"></td>
+                </tr>
+                <tr>
+                    <th>작성일</th><td id="tableDate"></td>
+                </tr>
+                <tr>
+                    <th>구분</th><td id="tableType"></td>
+                </tr>
+                <tr>
+                    <th>작성자</th><td id="tableWriter"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-bottom: none;" id="tableContent"></td>
+                </tr>
+                <tr id="writerTrue" style="display: none;">
+                    <td colspan="2" style="border-top: none;">
+                        <input id="writerTrueBtn" type="button" value="수정" onclick="putEditTableBtn()">
+                        <input type="button" value="삭제" onclick="putDeleteTableBtn()">
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+
+        <div id="answerContent" style="display: none;">
+
+            <div style="height: 30px;"></div>
+
+            <div style="font-size: 25px; height: 35px; line-height: 35px; display: flex; align-items: center; width: 850px; margin: 5px auto;">
+                <img src="answerIcon.png" style="height: 30px">
+                답변
+            </div>
+            <table>
+                <tr>
+                    <th>답변자</th><td>담당자</td>
+                </tr>
+                <tr>
+                    <th>답변일</th><td id="answerDate"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-bottom: none;" id="answerValue"></td>
+                </tr>
+                <tr id="adminTrue" style="display: none;">
+                    <td colspan="2" style="border-top: none;">
+                        <input type="button" value="수정" onclick="putAnswerEditBtn()">
+                        <input type="button" value="삭제" onclick="putAnswerDeleteBtn()">
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div id="answering" style="display: none;">
+
+            <div style="height: 30px;"></div>
+
+            <div style="font-size: 25px; height: 35px; line-height: 35px; display: flex; align-items: center; width: 850px; margin: 5px auto;">
+                답변하기
+            </div>
+            <textarea id="inputedAnswerContent" style="width: 900px; height: 500px; display: block; margin: 0 auto;"></textarea>
+            <input type="button" value="제출하기" style="display: block; margin: 0 auto;" onclick="answerSubmit()">
+
+        </div>
+
+        <div id="editTable" style="display: none;">
+            <table>
+                <tr>
+                    <th>제목</th>
+                    <style>
+                        #inputQuestionTitle {
+                            width: 650px;
+                            height: 23px;
+                            border: none;
+                            border-bottom: 1px solid #cccccc;
+                            font-size: 16px;
+                        }
+                        #inputQuestionTitle:focus {
+                            outline: none;
+                            border-bottom: 2px solid #555555;
+                        }
+                        #inputQuestionContent {
+                            font-size: 14px;
+                            margin: 10px auto;
+                            border:none;
+                        }
+                        #inputQuestionContent:focus {
+                            outline: none;
+                        }
+                    </style>
+                    <td>
+                        <div style="height: 25px;"><input type="text" id="inputQuestionTitle" placeholder="제목을 입력하세요"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>내용</th><td><textarea id="inputQuestionContent" style="width: 650px; height: 500px;" placeholder="내용을 입력하세요"></textarea></td>
+                </tr>
+            </table>
+
+            <div style="height: 20px;"></div>
+
+            <style>
+                .questionBtn {
+                    display: block;
+                    margin: 0 auto;
+                    height: 30px;
+                    width: 100px;
+                    background-color: #3b6bbe;
+                    color: white;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+                .questionBtn:hover {
+                    background-color: #2955a0;
+                }
+            </style>
+            <input type="button" value="제출하기" class="questionBtn" onClick="putSubmitQuestionBtn()">
+        </div>
+
+        <div style="height: 80px;"></div>
+
+        <div class="footerDiv">
+            <div class="footerInnerDiv">
+                <div><a href="/"><img src="fullLogoGray.png" style="height: 60px;" /></a></div>
+                <div style="width: 30px;"></div>
+                <div style="font-size: 14px; color: #CDCDCD">
+                    <div style="margin: 0 0 8px 0"><a style="color: #CDCDCD" href="way.html">찾아오시는 길</a>  |  <a style="color: #CDCDCD" href="company.html">회사소개</a></div>
+                    <div>대구광역시 북구 노원로 283 | 신우기전 | 대표자:이원태 | 사업자등록번호:504-20-87206</div>
+                    <div>TEL:053-358-6940~1 | FAX:053-351-5411</div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    
+    <!--파이어 베이스sdk를 설치합니다.-->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+        //파이어 베이스를 초기화합니다.
+        var firebaseConfig = {
+            apiKey: "AIzaSyART60VkbZ5b50p90WjaA5F3JqlK9v_usI",
+            authDomain: "sinwooemc-ee4be.firebaseapp.com",
+            projectId: "sinwooemc-ee4be",
+            storageBucket: "sinwooemc-ee4be.appspot.com",
+            messagingSenderId: "181362792114",
+            appId: "1:181362792114:web:715337957487e126a95bab",
+            measurementId: "G-EC0RF5080H"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+
+        //html요소를 변수로 선언합니다.
+        var loginBarLoginHref = document.getElementById("loginBarLoginHref");
+        var loginBarJoinHref = document.getElementById("loginBarJoinHref");
+        var loginBarDisplayId = document.getElementById("loginBarDisplayId");
+        var loginBarLogout = document.getElementById("loginBarLogout");
+        var currentId = "";
+
+        //사용자가 로그인 되어있는지 확인합니다.
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) { //로그인되어있다면
+                //일단 제일위에 로그인이랑 회원가입 글자 지움
+                loginBarLoginHref.setAttribute("style", "display: none;");
+                loginBarJoinHref.setAttribute("style", "display: none;");
+                loginBarDisplayId.setAttribute("style", "display: block;");
+                loginBarLogout.setAttribute("style", "display: block; cursor: pointer;");
+                currentId = user.displayName;
+                loginBarDisplayId.innerText = currentId;
+            } else { //로그인되어있지 않다면
+                console.log("로그인 되어있지 않습니다.");
+
+                loginBarLoginHref.setAttribute("style", "display: block;");
+                loginBarJoinHref.setAttribute("style", "display: block;");
+                loginBarDisplayId.setAttribute("style", "display: none;");
+                loginBarLogout.setAttribute("style", "display: none;");
+            }
+        });
+
+        //html요소를 가져옵니다.
+        var tableTitle = document.getElementById("tableTitle");
+        var tableDate = document.getElementById("tableDate");
+        var tableType = document.getElementById("tableType");
+        var tableWriter = document.getElementById("tableWriter");
+        var tableContent = document.getElementById("tableContent");
+
+        var questionTable = document.getElementById("questionTable");
+        var answerContent = document.getElementById("answerContent");
+        var answering = document.getElementById("answering");
+        var editTable = document.getElementById("editTable");
+
+        var inputedAnswerContent = "";
+        
+        var dbRef;
+
+        hurl = window.location.href
+        const url = new URL(hurl);
+
+        // URLSearchParams 객체
+        const urlParams = url.searchParams;
+
+        // URLSearchParams.get()
+        queryTitle = urlParams.get('title');
+
+        db.collection("notice").where("title", "==", queryTitle).get().then((querySnapshot) => {
+            
+            querySnapshot.forEach((doc) => {
+                tableTitle.innerText = doc.data().title;
+                var niti = new Date(doc.data().timestamp.seconds * 1000);
+                var year = niti.getFullYear();
+                var month = niti.getMonth() + 1;
+                var date = niti.getDate();
+                var hour = niti.getHours();
+                var minute = niti.getMinutes();
+                var displayDate = year + "년" + month + "월" + date + "일" + " " + hour + "시" + minute + "분";
+                tableDate.innerText = displayDate;
+                tableType.innerText = "공지";
+                tableWriter.innerText = "담당자";
+                var tempIsAnswered = doc.data().isAnswered;
+                tableContent.innerText = doc.data().content;
+
+                var writerTrue = document.getElementById("writerTrue");
+                var adminTrue = document.getElementById("adminTrue");
+                
+                var tempOpen = doc.data().isOpened;
+
+                db.collection("member").doc(currentId).get().then((doc) => {
+                    if(doc.data().authority == true) { //관리자면
+                        writerTrue.setAttribute("style","display: table-row;");
+                        adminTrue.setAttribute("style","display: table-row;");
+                        if(tempIsAnswered == false) { //글쓴이면서 대답이 된글이 아니면
+                            answerContent.setAttribute("style", "display: none;");
+                            answering.setAttribute("style", "display: block;");
+                        }else {
+                            answerContent.setAttribute("style", "display: block;");
+                            answering.setAttribute("style", "display: none;");
+                        }
+                    }
+                }) 
+
+                dbRef = db.collection("notice").doc(doc.id);
+
+                dbRef.collection("answerCollection").doc("answerDoc").get().then((doc) => {
+                    if(doc.exists) {
+                        var diti = new Date(doc.data().timestamp.seconds * 1000);
+                        var dyear = diti.getFullYear();
+                        var dmonth = diti.getMonth() + 1;
+                        var ddate = diti.getDate();
+                        var dhour = diti.getHours();
+                        var dminute = diti.getMinutes();
+                        var ddisplayDate = dyear + "년" + dmonth + "월" + ddate + "일" + " " + dhour + "시" + dminute + "분";
+                        document.getElementById("answerDate").innerText = ddisplayDate;
+                        document.getElementById("answerValue").innerText = doc.data().content;
+                    }
+                })
+
+            })
+        }).catch((error) => {
+            console.log(error);
+        });
+
+        function answerSubmit() {
+            console.log("제출버튼이 눌림");
+            inputedAnswerContent = document.getElementById("inputedAnswerContent").value;
+            if(inputedAnswerContent == "") {
+                alert("답변을 입력해 주세요");
+            }else {
+                dbRef.collection("answerCollection").doc("answerDoc").set({
+                    content: inputedAnswerContent,
+                    timestamp: new Date()
+                });
+                dbRef.update({
+                    isAnswered: true
+                }).then(() => {location.reload();})
+            }
+        }
+
+        function putLogoutText() {
+            console.log("로그아웃 눌림");
+            firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+                location.reload();
+            }).catch((error) => {
+            // An error happened.
+                console.log("로그아웃 실패");
+            });
+        }
+
+        function putEditTableBtn() {
+            console.log("수정 버튼 눌림");
+            questionTable.setAttribute("style", "display: none");
+            answerContent.setAttribute("style", "display: none");
+            answering.setAttribute("style", "display: none");
+            editTable.setAttribute("style", "display: block");
+            dbRef.get().then((doc) => {
+                document.getElementById("inputQuestionTitle").value = doc.data().title;
+                document.getElementById("inputQuestionContent").value = doc.data().content;
+            });
+        }
+        function putDeleteTableBtn() {
+            console.log("삭제 버튼 눌림");
+            dbRef.delete().then(() => {
+                location.href="/counsel.html";
+            })
+        }
+        function putAnswerEditBtn() {
+            console.log("답변 수정 버튼 눌림");
+            questionTable.setAttribute("style", "display: block");
+            answerContent.setAttribute("style", "display: none");
+            answering.setAttribute("style", "display: block");
+            editTable.setAttribute("style", "display: none");
+
+            
+            dbRef.collection("answerCollection").doc("answerDoc").get().then((doc) => {
+                document.getElementById("inputedAnswerContent").value = doc.data().content;
+            })
+        }
+        function putAnswerDeleteBtn() {
+            console.log("답변 삭제 버튼 눌림");
+            dbRef.collection("answerCollection").doc("answerDoc").delete().then(() => {
+                dbRef.update({
+                    isAnswered: false
+                }).then(() => {
+                    location.reload();
+                })
+            })
+        }
+
+        function putSubmitQuestionBtn() {
+            console.log("문의버튼 눌림");
+            var inputQuestionTitle = document.getElementById("inputQuestionTitle").value;
+            var inputQuestionContent = document.getElementById("inputQuestionContent").value;
+
+            dbRef.update({
+                content: inputQuestionContent,
+                title: inputQuestionTitle,
+            }).then(() => {
+                location.href="/qnaNoticePage.html?title="+inputQuestionTitle;
+            });
+        }
+        function toMyPage() {
+            location.href = "myPage.html"
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        @media screen and (min-height: 700px) {
+            body {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .container {
+            border: 1px solid #aaaaaa;
+            height: 700px;
+            width: 400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .loginBox {
+            height: 600px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .idInput {
+            width: 70%;
+            height: 25px;
+            display: block;
+            border: none;
+            border-bottom: 1px solid;
+            font-size: 16px;
+        }
+
+        .passwordInput {
+            width: 95%;
+            height: 25px;
+            display: block;
+            margin: 0 auto;
+            border: none;
+            border-bottom: 1px solid;
+            font-size: 16px;
+        }
+
+        .idInput:focus,
+        .passwordInput:focus {
+            outline: none;
+            border-bottom: 3px solid;
+        }
+
+        .joinBtn {
+            display: block;
+            height: 50px;
+            width: 90%;
+            margin: 0 auto;
+            background-color: #333333;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .joinBox {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="loginBox">
+            <div class="loginText" style="color: #333333; font-size: 40px;">JOIN</div>
+            <div style="height: 40px"></div>
+
+            <div
+                style="display: flex; align-items: center; justify-content: space-between; width: 95%; height: 40px; margin: 0 auto;">
+                <input id="inputedId" class="idInput" type="text" placeholder="아이디를 입력하세요" onkeyup="if(window.event.keyCode==13){putJoinBtn();}">
+                <input type="button" value="중복확인" style="height: 30px;" onclick="putIdConfirmBtn()">
+            </div>
+            <div style="height: 40px; display: flex; align-items: center;">
+                <input id="inputedPassword" class="passwordInput" type="password" placeholder="패스워드를 입력하세요"  onkeyup="if(window.event.keyCode==13){putJoinBtn();}">
+            </div>
+            <div style="height: 40px; display: flex; align-items: center;">
+                <input id="inputedPasswordConfirm" class="passwordInput" type="password" placeholder="패스워드를 재입력 해주세요" onkeyup="if(window.event.keyCode==13){putJoinBtn();}">
+            </div>
+            <style>
+                #passwordConfirmTrue {
+                    font-size: 12px; color: #16912b; width: 95%; margin: 0 auto; display: none;
+                }
+                #passwordConfirmFalse {
+                    font-size: 12px; color: #ff322b; width: 95%; margin: 0 auto; display: none;
+                }
+            </style>
+            <div id="passwordConfirmTrue">비밀번호가 일치합니다.</div>
+            <div id="passwordConfirmFalse">비밀번호가 일치하지 않습니다.</div>
+            <div style="height: 40px; display: flex; align-items: center;">
+                <input id="inputedEmail" class="passwordInput" type="email" placeholder="이메일을 입력해 주세요" onkeyup="if(window.event.keyCode==13){putJoinBtn();}"><br>
+            </div>
+            <div style="font-size: 12px; color: #BBBBBB; width: 95%; margin: 0 auto;">이메일은 아이디 찾기에 활용됩니다.</div>
+
+            <div style="height: 20px"></div>
+            <div style="font-size: 12px; color: #BBBBBB; width: 95%; margin: 0 auto;">선택 입력 사항입니다.</div>
+            <div style="height: 40px; display: flex; align-items: center;">
+                <input id="inputedCompanyName" class="passwordInput" type="email" placeholder="회사명을 입력해 주세요" onkeyup="if(window.event.keyCode==13){putJoinBtn();}"><br>
+            </div>
+            <div style="height: 40px; display: flex; align-items: center;">
+                <input id="inputedContact" class="passwordInput" type="email" placeholder="연락처를 입력해 주세요" onkeyup="if(window.event.keyCode==13){putJoinBtn();}"><br>
+            </div>
+            <div style="height: 40px"></div>
+            <input type="submit" class="joinBtn" value="회원가입" onclick="putJoinBtn();">
+            <script>
+                
+            </script>
+            <div style="height: 40px"></div>
+            <div class="joinBox"><a href="findId.html">아이디/<a href="findPassword.html">비밀번호</a>찾기</a> | <a href="loginPage.html">로그인</a></div>
+            <div style="height: 10px"></div>
+            <div class="joinBox"><a href="/">홈으로</a></div>
+
+        </div>
+    </div>
+    <!--파이어 베이스sdk를 설치합니다.-->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <script>
+    //파이어 베이스를 초기화합니다.
+    var firebaseConfig = {
+        apiKey: "AIzaSyART60VkbZ5b50p90WjaA5F3JqlK9v_usI",
+        authDomain: "sinwooemc-ee4be.firebaseapp.com",
+        projectId: "sinwooemc-ee4be",
+        storageBucket: "sinwooemc-ee4be.appspot.com",
+        messagingSenderId: "181362792114",
+        appId: "1:181362792114:web:715337957487e126a95bab",
+        measurementId: "G-EC0RF5080H"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    var db = firebase.firestore();
+
+    //html요소를 내부변수로 선언합니다.
+    var inputedId = "";
+    var inputedPassword = "";
+    var inputedPasswordConfirm = "";
+    var inputedEmail = "";
+    var inputedCompanyName = "";
+    var inputedContact = "";
+    var passwordSame = false;
+    var idConfirm = false;
+
+    //비밀번호와 비밀번호 확인 값 사이 일치여부를 검사하는 이벤트리스너를 만듭니다.
+    document.getElementById("inputedPasswordConfirm").addEventListener('input',() => {
+        inputedPasswordConfirm = document.getElementById("inputedPasswordConfirm").value;
+        inputedPassword = document.getElementById("inputedPassword").value;
+        if(inputedPasswordConfirm == 0) {
+            document.getElementById("passwordConfirmTrue").setAttribute("style", "display: none");
+            document.getElementById("passwordConfirmFalse").setAttribute("style", "display: none");
+            passwordSame = false;
+        }else if(inputedPassword === inputedPasswordConfirm) {
+            document.getElementById("passwordConfirmTrue").setAttribute("style", "display: block");
+            document.getElementById("passwordConfirmFalse").setAttribute("style", "display: none");
+            passwordSame = true;
+            console.log("일치가확인됩니다.");
+        }else {
+            document.getElementById("passwordConfirmTrue").setAttribute("style", "display: none");
+            document.getElementById("passwordConfirmFalse").setAttribute("style", "display: block");
+            passwordSame = false;
+        }
+    });
+    document.getElementById("inputedPassword").addEventListener('input',() => {
+        inputedPasswordConfirm = document.getElementById("inputedPasswordConfirm").value;
+        inputedPassword = document.getElementById("inputedPassword").value;
+        if(inputedPasswordConfirm == "") {
+            document.getElementById("passwordConfirmTrue").setAttribute("style", "display: none");
+            document.getElementById("passwordConfirmFalse").setAttribute("style", "display: none");
+            passwordSame = false;
+        }else if(inputedPassword === inputedPasswordConfirm) {
+            document.getElementById("passwordConfirmTrue").setAttribute("style", "display: block");
+            document.getElementById("passwordConfirmFalse").setAttribute("style", "display: none");
+            passwordSame = true;
+            console.log("일치가확인됩니다.");
+        }else {
+            document.getElementById("passwordConfirmTrue").setAttribute("style", "display: none");
+            document.getElementById("passwordConfirmFalse").setAttribute("style", "display: block");
+            passwordSame = false;
+        }
+    });
+
+    //아이디 입력값이 변화할때마다 아이디 중복확인을 요구하도록 변수값을 바꿉니다.
+    document.getElementById("inputedId").addEventListener('input',() => {
+        console.log("아이디가 새롭게 입력되어 아이디 중복확인이 요구됩니다.");
+        idConfirm = false;
+    });
+
+    //아이디 중복확인버튼이 눌렸을때 기능을 구현합니다.
+    function putIdConfirmBtn() {
+        inputedId = document.getElementById("inputedId").value;
+        console.log("아이디 중복확인 버튼이 눌렸습니다." + inputedId);
+        if(inputedId == "") {
+            alert("아이디를 입력해 주세요");
+        } else {
+            db.collection("member").doc(inputedId).get().then((doc) => {
+                if(doc.exists) {
+                    console.log("아이디가 이미 존재합니다.");
+                    alert("이미 존재하는 아이디 입니다.");
+                } else {
+                    console.log("아이디의 존재가 확인 되지 않습니다. 회원가입을 진행합니다.");
+                    alert("사용가능한 아이디 입니다.")
+                    idConfirm = true;
+                }
+            })
+        }
+    }
+
+    //조인버튼을 눌렀을때 기능을 구현합니다.
+    function putJoinBtn() {
+        inputedId = document.getElementById("inputedId").value;
+        inputedEmail = document.getElementById("inputedEmail").value;
+        inputedCompanyName = document.getElementById("inputedCompanyName").value;
+        inputedContact = document.getElementById("inputedContact").value;
+        console.log("회원가입 버튼이 눌림");
+
+        //일단 이메일 존재여부부터 확인
+        db.collection("memberEmail").doc(inputedEmail).get().then((doc) => {
+            if(doc.exists == false) { //이메일이 없으면
+                //회원가입버튼이 눌렸으나 필수 정보등의 입력이 모자라거나 아이디가 중복검사가 되지 않았거나 비밀번호 일치여부가 실패하였거나 하는 등의 이유로 실패하였을때를 의미합니다.
+                if(inputedId == "" || inputedPassword == "" || inputedEmail == "") {
+                    alert("필수정보(아이디, 비밀번호, 이메일)를 입력해주세요");
+                } else if(passwordSame == false) {
+                    alert("비밀번호와 비밀번호 재입력란의 값이 일치하지 않습니다.");
+                    console.log(passwordSame);
+                } else if(idConfirm == false){
+                    alert("아이디 중복확인을 해주세요");
+                } else { //회원가입 버튼이 눌려서 모든 고난과 역경을해치고 작동하는 것을 의미합니다.
+                    //비밀번호 6자리 조건을 해제하는 알고리즘이 필요합니다.
+                    if(inputedPassword.length >= 6) {
+                        firebase.auth().createUserWithEmailAndPassword(inputedEmail, inputedPassword)
+                        .then((userCredential) => {
+                            console.log("회원가입 성공");
+                            userCredential.user.updateProfile({
+                                displayName: inputedId
+                            }).catch(function(error) {
+                                console.log(error);
+                            });
+                            /*
+                            console.log(userCredential.user); //뒤져본결과 쓸만한 거 displayName, email, emailVerified, isAnonymous, phoneNumber, photoURL, uid
+                            console.log("qqqq");
+                            console.log(userCredential);
+                            */
+                            console.log("파이어 스토어에 접근합니다.");
+                            db.collection("member").doc(inputedId).set({
+                                password: inputedPassword,
+                                email: inputedEmail,
+                                companyName: inputedCompanyName,
+                                contact: inputedContact,
+                                authority: false
+                            }).then(() => {
+                                console.log("회원정보가 파이어베이스에 입력되었습니다.");
+                            }).catch((error) => {
+                                console.error("파이어베이스에 회원정보 등록 실패");
+                                console.error("Error writing document: ", error);    
+                            });
+                            db.collection("memberEmail").doc(inputedEmail).set({
+                                isValid: false
+                            }).then(() => {
+                                console.log("회원의 이메일정보가 파이어베이스에 입력되었습니다.");
+                                location.href="loginPage.html"; 
+                            }).catch((error) => {
+                                console.error("파이어베이스에 회원 이메일정보정보 등록 실패");
+                                console.error("Error writing document: ", error);    
+                            });
+                           
+                        }).catch((error) => {
+                            console.log("회원가입 실패");
+                            console.log(errorMessage);
+                            console.log(inputedEmail + " " + inputedPassword);
+                        });
+                        
+                    } else{
+                        db.collection("secret").doc("passwordDeficiency").get().then((doc) => {
+                            inputedPassword += doc.data().deficiency;
+                            firebase.auth().createUserWithEmailAndPassword(inputedEmail, inputedPassword)
+                            .then((userCredential) => {
+                                console.log("회원가입 성공");
+                                userCredential.user.updateProfile({
+                                    displayName: inputedId
+                                }).catch(function(error) {
+                                    console.log(error);
+                                });
+                                /*console.log(userCredential.user); //뒤져본결과 쓸만한 거 displayName, email, emailVerified, isAnonymous, phoneNumber, photoURL, uid
+                                console.log("qqqq");
+                                console.log(userCredential);*/
+                                console.log("파이어 스토어에 접근합니다.");
+                                db.collection("member").doc(inputedId).set({
+                                    password: inputedPassword,
+                                    email: inputedEmail,
+                                    companyName: inputedCompanyName,
+                                    contact: inputedContact,
+                                    authority: false
+                                }).then(() => {
+                                    console.log("회원정보가 파이어베이스에 입력되었습니다.");
+                                }).catch((error) => {
+                                    console.error("파이어베이스에 회원정보 등록 실패");
+                                    console.error("Error writing document: ", error);    
+                                });
+                                db.collection("memberEmail").doc(inputedEmail).set({
+                                    isValid: false
+                                }).then(() => {
+                                    console.log("회원의 이메일정보가 파이어베이스에 입력되었습니다.");
+                                    location.href="loginPage.html";
+                                }).catch((error) => {
+                                    console.error("파이어베이스에 회원 이메일정보정보 등록 실패");
+                                    console.error("Error writing document: ", error);    
+                                });
+
+                            }).catch((error) => {
+                                console.log("회원가입 실패");
+                                console.log(errorMessage);
+                                console.log(inputedEmail + " " + inputedPassword);
+                            });
+                        })
+                    }
+                }
+            } else {
+                if(inputedId == "" || inputedPassword == "" || inputedEmail == "") {
+                    alert("필수정보(아이디, 비밀번호, 이메일)를 입력해주세요");
+                } else if(passwordSame == false) {
+                    alert("비밀번호와 비밀번호 재입력란의 값이 일치하지 않습니다.");
+                    console.log(passwordSame);
+                } else if(idConfirm == false){
+                    alert("아이디 중복확인을 해주세요");
+                } else {
+                    alert("이미 존재하는 이메일입니다.")
+                }
+            }
+        });
+    }
+    </script>
+</body>
+
+</html>
